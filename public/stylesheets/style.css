@@ -93,3 +93,18 @@ a.active {
 .footer-all-container p {
   color: white;
 }
+
+/* ############## NEWS ################### */
+
+.news-article-container {
+  position: relative;
+  width: 100%;
+  margin: 2px 0;
+  padding: 2px;
+  border: 1px solid black;
+}
+
+.news-search-form {
+  padding: 3px;
+  text-align: right;
+}

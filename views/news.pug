@@ -2,5 +2,19 @@ extends layout
 
 block content
   div(class='content-container')
-    h1= title
-    p Welcome to #{title}
+    div(class='row')
+      div(class='col text-start')
+        h3 #{title}
+      div(class='col')
+        form(method='get' class='news-search-form')
+          input(type='text' name='search' value=search)
+          input(type='submit' value='szukaj')
+    each item in data 
+      article(class='news-article-container')
+          div(class='row')
+            div(class='col')
+              h3=item.title
+            div(class='col')
+              p #{item.created.toString().substr(0, 15)}
+          p=item.description
+          p=item.author
