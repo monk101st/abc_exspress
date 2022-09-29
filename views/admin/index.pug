@@ -1,0 +1,54 @@
+extends ../layout
+
+block content
+  div(class='content-container')
+    div(class="row justify-content-center")
+      div(class="col-2 p-2 text-center text-dark m-5") 
+        h3 Home
+        p(class='icon-style')
+          i(class="bi bi-house-fill")
+        button(type="button" class="btn btn-primary")
+          a(class='admin-button-text' href='/admin/home') zarządzaj
+      div(class="col-2 p-2 text-center text-dark m-5") 
+        h3 Aktualności
+        p(class='icon-style')
+          i(class="bi bi-newspaper")
+        button(type="button" class="btn btn-primary")
+          a(class='admin-button-text' href='/admin/news') zarządzaj
+      div(class="col-2 p-2 text-center text-dark m-5") 
+        h3 Pomoc
+        p(class='icon-style')
+          i(class="bi bi-question-square-fill")
+        button(type="button" class="btn btn-primary")
+          a(class='admin-button-text' href='/admin/help') zarządzaj
+      div(class="col-2 p-2 text-center text-dark m-5") 
+        h3 Regulamin
+        p(class='icon-style')
+          i(class="bi bi-file-earmark-ruled-fill")
+        button(type="button" class="btn btn-primary")
+          a(class='admin-button-text' href='/admin/rules') zarządzaj
+      div(class="col-2 p-2 text-center text-dark m-5") 
+        h3 Kategorie
+        p(class='icon-style')
+          i(class="bi bi-bookmarks-fill")
+        button(type="button" class="btn btn-primary")
+          a(class='admin-button-text' href='/admin/category') zarządzaj
+      div(class="col-2 p-2 text-center text-dark m-5") 
+        h3 Produkty
+        p(class='icon-style')
+          i(class="bi bi-diagram-3-fill")
+        button(type="button" class="btn btn-primary")
+          a(class='admin-button-text' href='/admin/products') zarządzaj
+      div(class="col-2 p-2 text-center text-dark m-5") 
+        h3 Promocje
+        p(class='icon-style')
+          i(class="bi bi-star-fill")
+        button(type="button" class="btn btn-primary")
+          a(class='admin-button-text' href='/admin/promotion') zarządzaj
+      div(class="col-2 p-2 text-center text-dark m-5") 
+        h3 Ustawienia
+        p(class='icon-style')
+          i(class="bi bi-gear-fill")
+        button(type="button" class="btn btn-primary")
+          a(class='admin-button-text' href='/admin/settings') zarządzaj
+

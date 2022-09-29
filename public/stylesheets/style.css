@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* font-family: 'Dancing Script', cursive; */
+/* font-family: 'Lato', sans-serif; */
+/* font-family: 'Roboto', sans-serif; */
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.header-all-container {
+  width: 100%;
+  height: 180px;
+  background-color: rgb(5, 33, 46);
+
+}
+.header-container {
+  position: relative;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1220px !important;
+}
+
+.header-column {
+  height: 130px;
+  margin: 1px;
+  background-color: aquamarine;
+}
+
+
+.navbar {
+  background-color: rgb(5, 33, 46) !important;
+  height: 40px;
+  z-index: 1000;
+}
+
+.collapse.navbar-collapse {
+  background-color: rgb(5, 33, 46) !important;
+}
+.nav-item a {
+  padding: 5px;
+  color: rgb(232, 241, 241) !important;
+  font-size: 1.4rem;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+}
+
+a.active {
+  color: rgb(41, 154, 230) !important;
+  font-weight: bold;
+}
+.content-all-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 210px);
+  background-color: rgb(246, 255, 255);
+}
+.content-container {
+  position: relative;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+/* ############# LOGIN ################ */
+
+.login-form-container {
+  position: absolute;
+  padding: 10px;
+  width: 50%;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgb(5, 33, 46);
+}
+.form {
+  text-align: right;
+}
+
+.footer-all-container {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  padding: 3px;
+  text-align: center;
+  background-color: rgb(5, 33, 46);
+}
+.footer-all-container p {
+  color: white;
+}

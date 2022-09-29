@@ -1,0 +1,18 @@
+extends ../../layout
+
+block content
+  div(class='content-container')
+    if errors.errors !== undefined 
+      each message in errors.errors 
+        p=message
+
+    form(method="post")
+      div(class="mb-3")
+          label(for="exampleFormControlInput1" class="form-label") Tytuł:
+          input(type="text" class="form-control" name='title' value= body.title II '' placeholder="wpisz tytuł aktualności...")
+          label(for="exampleFormControlInput1" class="form-label") Autor:
+          input(type="text" class="form-control" name='author' value= body.author II '' placeholder="Autor...")
+      div(class="mb-3")
+          label(for="exampleFormControlTextarea1" class="form-label") Krótki opis:
+          textarea(class="form-control" name='description' rows="3") #{body.description}
+      button(type="submit" class='btn btn-primary') DODAJ
