@@ -73,6 +73,12 @@ router.post('/news/add', (req, res, next) => {
     })
   });  
 
+  /* ############ ADMIN - API ############ */
+  router.get('/apis', (req, res, next) => {
+
+    res.render('admin/apis/index', { title: 'API - Panel' });
+  });
+
   /* ############ ADMIN - HELP ############ */
   router.get('/help', (req, res, next) => {
 
