@@ -1,0 +1,31 @@
+extends ../../layout
+
+block content
+  div(class='content-container')
+    h1 #{title}
+    table(class="table table-striped")
+      thead 
+      tbody 
+        tr 
+          th(scope='col') #
+          th(scope='col') Nazwa
+          th(scope='col') Imię
+          th(scope='col') Nazwisko
+          th(scope='col') Email
+          th(scope='col') Data
+          th(scope='col') Akcje
+        each item, index in data 
+          tr
+            th(scope='row')=index + 1
+            td=item.loginName 
+            td=item.firstName 
+            td=item.familyName 
+            td=item.userEmail 
+            td #{item.created.getFullYear()}:#{item.created.getMonth() + 1}:#{item.created.getDate()}
+            td 
+              a(href=`/admin/users/show/${item._id}` class='show-icon-link') 
+                i(class="bi bi-play-fill m-2")
+              a(href=`/admin/news/edit/${item._id}` class='edit-icon-link') 
+                i(class="bi bi-pencil-fill m-2")
+              a(href=`/admin/news/delete/${item._id}` class='delete-icon-link') 
+                i(class="bi bi-x-circle-fill m-2")

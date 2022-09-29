@@ -1,5 +1,7 @@
 const express = require('express');
 const News = require('../models/news');
+const { findById } = require('../models/users');
+const Users = require('../models/users');
 
 const router = express.Router();
 
@@ -18,7 +20,6 @@ router.all('*', (req, res, next) => {
 
 /*######### ADMIN-index ############# */
 router.get('/', (req, res, next) => {
-
   res.render('admin/index', { title: 'Admin' });
 });
 
@@ -114,12 +115,31 @@ router.post('/news/add', (req, res, next) => {
       res.render('admin/promotion/index', { title: 'Promocje - Panel' });
     });
 
-    /* ############ ADMIN - PROMOTION ############ */
+    /* ############ ADMIN - SETTINGS ############ */
     router.get('/settings', (req, res, next) => {
 
   
       res.render('admin/settings/index', { title: 'Ustawienia - Panel' });
     });
 
+    /* ############ ADMIN - SETTINGS ############ */
+    router.get('/users', (req, res, next) => {
+
+      Users.find({}, (err, data) => {
+        console.log(data)
+        res.render('admin/users/index', { title: 'Użytkownicy - Panel', data });
+      })
+    });
+
+    router.get('/users/show/:id', (req, res, next) => {
+      const id = req.params.id
+
+      Users.findById({id}, (err, data) => {
+        console.log(data);
+        res.render('admin/users/users-show', { title: 'Użytkownik',id, data});
+      });
+      
+
+    }); 
 
 module.exports = router;

@@ -2,5 +2,25 @@ extends layout
 
 block content
   div(class='content-container')
-    h1= title
-    p Welcome to #{title}
+    if errors.errors !== undefined 
+        each message in errors.errors 
+          p=message
+    div(class='register-form-container')
+      p(class='register-info text-light text-justify') Wypełniając poniższy formularz dodaje swoje dane do bzay danych użytkowników aplikacji. Twoje konto będzie wymagało zatwierdzenia przez administratora i przyznania określonych ról w systemie.
+      form(method="post")
+        div(class="mb-3")
+            label(for="exampleFormControlInput1" class="form-label text-light") Nazwa logowania:
+            input(type="text" class="form-control" name='loginName' placeholder="wpisz nazwę logowania")
+            label(for="exampleFormControlInput1" class="form-label text-light") Imię:
+            input(type="text" class="form-control" name='firstName' placeholder="wpisz imię")
+            label(for="exampleFormControlInput1" class="form-label text-light") Nazwisko:
+            input(type="text" class="form-control" name='familyName' placeholder="wpisz nazwisko")
+            label(for="exampleFormControlInput1" class="form-label text-light") Email:
+            input(type="email" class="form-control" name='userEmail' placeholder="wpisz nazwisko")
+            label(for="exampleFormControlInput1" class="form-label text-light") Data urodzenia:
+            input(type="date" class="form-control" name='bornDate' placeholder="wpisz date")
+        div(class="mb-3 text-center")
+            input(class="form-check-input" type="checkbox" name='ruleActepted' value="1" id="flexCheckDefault")
+            label(class="form-check-label text-light" for="flexCheckDefault") Akceptuję regulamin
+        div(class="mb-3 text-center")
+          button(type="submit" class='btn btn-primary') ZAREJESTRUJ

@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('rules', { title: 'Regulamin' });
+  username = req.session.user;
+  
+  res.render('rules', { title: 'Regulamin', username });
 });
 
 module.exports = router;

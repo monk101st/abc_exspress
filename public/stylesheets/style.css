@@ -108,3 +108,13 @@ a.active {
   padding: 3px;
   text-align: right;
 }
+
+/* ############## REGISTER ################### */
+
+.register-form-container {
+  margin: 20px auto;
+  padding: 30px;
+  width: 60%;
+  background-color: rgb(5, 33, 46);
+  
+}

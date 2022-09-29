@@ -6,6 +6,8 @@ const News = require('../models/news');
 router.get('/', (req, res, next) => {
   const search = req.query.search || '';
 
+  console.log(req.session.user);
+
   const findNews = News
     .find({title: new RegExp(search.trim(), 'i')})
     .sort({created: -1});
