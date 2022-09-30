@@ -10,6 +10,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   const body = req.body;
+  console.log(body);
 
   const usersData = new Users(body);
   const errors = usersData.validateSync(); //walidacja pól w formularzu.
