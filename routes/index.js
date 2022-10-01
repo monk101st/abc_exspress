@@ -17,21 +17,25 @@ router.get('/login', (req, res, next) => {
   res.render('login', { title: 'Logowanie' });
 });
 
-
-
 router.post('/login', (req, res, next) => {
   const body = req.body
 
   const findUser = Users
-    .find({loginName: body.login})
+    .findOne({loginName: body.login})
     .select('loginName userPassword');
 
 
   findUser.exec((err, data) => {
-    console.log(body.login);
-    
+
+
+    if(data === null) {
+      res.redirect('/login');
+      console.log('przekierowano');
+      return;
+    }else {
+      console.log(data);
       const logpass = body.password;
-      const hash = !data[0].userPassword ? 'xxxx' : data[0].userPassword;
+      const hash = data.userPassword;
     
       bcrypt.compare(logpass, hash, function(error, isMatch) {
         if (error) {
@@ -47,6 +51,9 @@ router.post('/login', (req, res, next) => {
           res.redirect('/admin');
         }
       })
+    }
+    
+
 
   })
 
