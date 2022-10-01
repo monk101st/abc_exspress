@@ -47,8 +47,7 @@ router.post('/login', (req, res, next) => {
           console.log("Password matches!")
           req.session.admin = 1;
           req.session.user = body.login;
-          console.log(req.session);
-          res.redirect('/admin');
+          res.redirect('/');
         }
       })
     }

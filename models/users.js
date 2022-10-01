@@ -10,11 +10,17 @@ const usersSchema = new Schema({
     familyName: {type: String, required: true},
     userEmail: {type: String, required: true},
     bornDate: {type: Date, required: true},
-    ruleActepted: {type: Boolean, required: false},
+    ruleActepted: {type: Boolean, required: true},
     created: {type: Date, default: Date.now},
     lastEdit: {type: Date, default: Date.now},
     userAvatar: {type: String, default: 'nopicture'},
-    userRole: {type: String, default: 'norole'}
+    userRole: {type: String, default: 'norole'},
+    userCompany: {type: String},
+    userNip: {type: String},
+    userRegon: {type: String},
+    userAdress: {type: String},
+    userCity: {type: String},
+    userPostal: {type: String},
 });
 
 usersSchema.pre("save", function (next) {

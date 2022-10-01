@@ -8,21 +8,36 @@ block content
     div(class='register-form-container')
       p(class='register-info text-light text-justify') Wypełniając poniższy formularz dodaje swoje dane do bzay danych użytkowników aplikacji. Twoje konto będzie wymagało zatwierdzenia przez administratora i przyznania określonych ról w systemie.
       form(method="post")
-        div(class="mb-3")
-            label(for="exampleFormControlInput1" class="form-label text-light ") Nazwa logowania:
-            input(type="text" class="form-control mb-3" name='loginName' placeholder="wpisz nazwę logowania")
-            label(for="exampleFormControlInput1" class="form-label text-light") Hasło:
-            input(type="password" class="form-control mb-3" name='userPassword' placeholder="wpisz swoje hasło")
-            label(for="exampleFormControlInput1" class="form-label text-light") Imię:
-            input(type="text" class="form-control mb-3" name='firstName' placeholder="wpisz imię")
-            label(for="exampleFormControlInput1" class="form-label text-light") Nazwisko:
-            input(type="text" class="form-control mb-3" name='familyName' placeholder="wpisz nazwisko")
-            label(for="exampleFormControlInput1" class="form-label text-light") Email:
-            input(type="email" class="form-control mb-3" name='userEmail' placeholder="wpisz nazwisko")
-            label(for="exampleFormControlInput1" class="form-label text-light") Data urodzenia:
-            input(type="date" class="form-control mb-3" name='bornDate' placeholder="wpisz date")
+        div(class='row')
+          div(class='col')
+            div(class="mb-3")
+                label(for="exampleFormControlInput1" class="form-label text-light ") Nazwa logowania:
+                input(type="text" class="form-control mb-3" name='loginName' placeholder="wpisz nazwę logowania")
+                label(for="exampleFormControlInput1" class="form-label text-light") Hasło:
+                input(type="password" class="form-control mb-3" name='userPassword' placeholder="wpisz swoje hasło")
+                label(for="exampleFormControlInput1" class="form-label text-light") Imię:
+                input(type="text" class="form-control mb-3" name='firstName' placeholder="wpisz imię")
+                label(for="exampleFormControlInput1" class="form-label text-light") Nazwisko:
+                input(type="text" class="form-control mb-3" name='familyName' placeholder="wpisz nazwisko")
+                label(for="exampleFormControlInput1" class="form-label text-light") Email:
+                input(type="email" class="form-control mb-3" name='userEmail' placeholder="wpisz nazwisko")
+                label(for="exampleFormControlInput1" class="form-label text-light") Data urodzenia:
+                input(type="date" class="form-control mb-3" name='bornDate' placeholder="wpisz date")
+          div(class='col')
+                label(for="exampleFormControlInput1" class="form-label text-light ") Nazwa firmy:
+                input(type="text" class="form-control mb-3" name='userCompany' placeholder="wpisz nazwę firmy")
+                label(for="exampleFormControlInput1" class="form-label text-light") NIP:
+                input(type="text" class="form-control mb-3" name='userNip' placeholder="wpisz numer NIP")
+                label(for="exampleFormControlInput1" class="form-label text-light") REGON:
+                input(type="text" class="form-control mb-3" name='userRegon' placeholder="wpisz numer REGON")
+                label(for="exampleFormControlInput1" class="form-label text-light") Adres firmy:
+                input(type="text" class="form-control mb-3" name='userAdress' placeholder="Ulica nr domu nr lokalu")
+                label(for="exampleFormControlInput1" class="form-label text-light") Miasto:
+                input(type="text" class="form-control mb-3" name='userCity' placeholder="wpisz miasto")
+                label(for="exampleFormControlInput1" class="form-label text-light") Kod pocztowy:
+                input(type="text" class="form-control mb-3" name='userPostal' placeholder="wpisz kod pocztowy")
         div(class="mb-3 text-center")
-            input(class="form-check-input" type="checkbox" name='ruleActepted' value="1" id="flexCheckDefault")
-            label(class="form-check-label text-light" for="flexCheckDefault") Akceptuję regulamin
+          input(class="form-check-input" type="checkbox" name='ruleActepted' value="1" id="flexCheckDefault")
+          label(class="form-check-label text-light" for="flexCheckDefault") Akceptuję regulamin
         div(class="mb-3 text-center")
           button(type="submit" class='btn btn-primary') ZAREJESTRUJ
