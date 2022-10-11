@@ -2,4 +2,10 @@ extends ../../layout
 
 block content
   div(class='content-container')
-    h1 #{title}
+    form(method='post' action='/admin/news/update')
+      div(class="mb-3")
+        label(for="exampleFormControlInput1" class="form-label") Tytuł:
+        input(type="text" class="form-control" name='title' id="exampleFormControlInput1" value=`${data.title}`)
+      div(class="mb-3")
+        label(for="exampleFormControlInput1" class="form-label") Opis:
+        textarea(class="form-control" aria-label="With textarea" name='description') #{data.description} 

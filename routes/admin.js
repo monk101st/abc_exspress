@@ -63,8 +63,16 @@ router.post('/news/add', (req, res, next) => {
 
   router.get('/news/show/:id', (req, res, next) => {
     const id = req.params.id
-    
-    res.render('admin/news/news-show', { title: 'Podgląd Aktualności', id});
+    News.findById(id, (err, data) => {
+      res.render('admin/news/news-show', { title: 'Podgląd Aktualności', data});
+    })
+  }); 
+
+  router.get('/news/edit/:id', (req, res, next) => {
+    const id = req.params.id
+    News.findById(id, (err, data) => {
+      res.render('admin/news/news-edit', { title: 'Podgląd Aktualności', data});
+    })
   }); 
 
 

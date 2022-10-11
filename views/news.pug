@@ -3,18 +3,27 @@ extends layout
 block content
   div(class='content-container')
     div(class='row')
-      div(class='col text-start')
+      div(class='col-8 text-start')
         h3 #{title}
-      div(class='col')
-        form(method='get' class='news-search-form')
-          input(type='text' name='search' value=search)
-          input(type='submit' value='szukaj')
-    each item in data 
-      article(class='news-article-container')
-          div(class='row')
-            div(class='col')
-              h3=item.title
-            div(class='col')
-              p #{item.created.toString().substr(0, 15)}
-          p=item.description
-          p=item.author
+      div(class='col-4 search-container')
+        form(method='get')
+          div(class="input-group mb-3")
+            a(href='/news/?sorte=1' class='arrow-link')
+              i(class="bi bi-arrow-up-circle-fill p-3")
+            a(href='/news/?sorte=-1' class='arrow-link')             
+              i(class="bi bi-arrow-down-circle-fill p-3")
+            input(type="text" class="form-control" name='search' placeholder="wpisz szukaną frazę..." aria-label="Recipient's username" aria-describedby="button-addon2")
+            button(class="btn btn-outline-secondary" type="submit" id="button-addon2") szukaj
+      div(class="row row-cols-1 row-cols-md-3 g-4 news-columns-container")
+        each item in data 
+      
+          div(class="col m-5")
+            div(class="card h-100 card-container")
+              div(class="card-body")
+                h5(class="card-title") #{item.title}
+                p(class="card-data") #{item.created.toString().substr(0, 15)}
+                p(class="card-text") #{item.description}
+                p(class="card-author") #{item.author}
+              div(class='card-footer')
+                a(href=`/news/show/${item.id}`)
+                  button(class='btn btn-primary btn-sm') więcej 

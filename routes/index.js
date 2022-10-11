@@ -4,9 +4,6 @@ const Users = require('../models/users');
 const bcrypt = require("bcryptjs")
 
 
-const login = 'monk101st@gmail.com';
-const password = 'maciek';
-
 /* GET home page. */
 router.get('/', (req, res, next) => {
   username = req.session.user;
@@ -46,7 +43,7 @@ router.post('/login', (req, res, next) => {
         } else {
           console.log("Password matches!")
           req.session.admin = 1;
-          req.session.user = body.login;
+          req.session.user = data.loginName;
           res.redirect('/');
         }
       })

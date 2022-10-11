@@ -17,9 +17,13 @@ html
         div(class='logo-container p-0')
           div(class="container p-0")
             div(class="row align-items-start p-0")
-              div(class="col header-column") ONE
+              div(class="col header-column")
+                h1(class='page-title') ARTPROTECT
+                h4(class='page-subtitle') CMS
               div(class="col header-column") TWO
-              div(class="col header-column text-right") zalogowano: #{username}
+              div(class="col header-column text-right") 
+                p(class='login-info') zalogowano: 
+                  span #{username}
         nav(class="navbar navbar-expand-lg navbar-dark")
           button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
             span(class="navbar-toggler-icon")

@@ -2,5 +2,16 @@ extends layout
 
 block content
   div(class='content-container')
-    h1= title
-    p Welcome to #{title}
+    div(class='row')
+      div(class='col-8 text-start')
+        h3 #{title}
+      div(class='col-4 search-container')
+        form(method='get')
+          div(class="input-group mb-3")
+            a(href='/news/?sorte=1' class='arrow-link')
+              i(class="bi bi-arrow-up-circle-fill p-3")
+            a(href='/news/?sorte=-1' class='arrow-link')             
+              i(class="bi bi-arrow-down-circle-fill p-3")
+            input(type="text" class="form-control" name='search' placeholder="wpisz szukaną frazę..." aria-label="Recipient's username" aria-describedby="button-addon2")
+            button(class="btn btn-outline-secondary" type="submit" id="button-addon2") szukaj
+      div(class="row row-cols-1 row-cols-md-3 g-4 news-columns-container")
