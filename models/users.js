@@ -10,7 +10,7 @@ const usersSchema = new Schema({
     familyName: {type: String, required: true},
     userEmail: {type: String, required: true},
     bornDate: {type: Date, required: true},
-    ruleActepted: {type: Boolean, required: true},
+    ruleActepted: {type: Boolean, required: true, default: true},
     created: {type: Date, default: Date.now},
     lastEdit: {type: Date, default: Date.now},
     userAvatar: {type: String, default: 'nopicture'},

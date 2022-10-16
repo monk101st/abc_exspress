@@ -1,0 +1,52 @@
+extends ../../layout
+
+block content
+  div(class='content-container')
+    h3 #{title}
+    form(method='post' action='/admin/users/update' enctype='multipart/form-data')
+        div(class='row')
+            div(class='col-6')
+                div(class="mb-3")
+                    label(class="form-label") Id:
+                    input(type="text" name='id' class="form-control" value= data.id || '' readonly)
+                div(class="mb-3")
+                    label(class="form-label") Imię:
+                    input(type="text" name='firstName' class="form-control" value= data.firstName || '' )
+                div(class="mb-3")
+                    label(class="form-label") Nazwisko:
+                    input(type="text" name='familyName' class="form-control" value= data.familyName || '')
+                div(class="mb-3")
+                    label(class="form-label") Email:
+                    input(type="email" name='userEmail' class="form-control" value= data.userEmail || '')
+                div(class="mb-3")
+                    label(class="form-label") Data urodzenia:
+                    input(type="date" name='bornDate' class="form-control" value= data.bornDate || '')
+            div(class='col-6')
+                div(class="mb-3")
+                    label(class="form-label") oldpicture:
+                    input(type="text" name='oldpicture' class="form-control" value= data.userAvatar || '')
+                div(class="mb-3")
+                    label(for="formFile" class="form-label") Zmień avatar:
+                    input(class="form-control" type="file" id="formFile" name="image") 
+                div(class="mb-3")
+                    label(class="form-label") Rola w systemie:
+                    input(type="text" name='userRole' class="form-control" value= data.userRole || '')
+                div(class="mb-3")
+                    label(class="form-label") Nazwa firmy:
+                    input(type="text" name='userCompany' class="form-control" value= data.userCompany || '')
+                div(class="mb-3")
+                    label(class="form-label") NIP:
+                    input(type="text" name='userNip' class="form-control" value= data.userNip || '')
+                div(class="mb-3")
+                    label(class="form-label") REGON:
+                    input(type="text" name='userRegon' class="form-control" value= data.userRegon || '')
+                div(class="mb-3")
+                    label(class="form-label") Adres firmy:
+                    input(type="text" name='userAdress' class="form-control" value= data.userAdress || '')
+                div(class="mb-3")
+                    label(class="form-label") Miasto:
+                    input(type="text" name='userCity' class="form-control" value= data.userCity || '')
+                div(class="mb-3")
+                    label(class="form-label") Kod pocztowy:
+                    input(type="text" name='userPostal' class="form-control" value= data.userPostal || '')
+            button(class='btn btn-primary') Zapisz

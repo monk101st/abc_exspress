@@ -2,7 +2,20 @@ extends ../../layout
 
 block content
   div(class='content-container')
-    h1 #{title}
+    div(class='row mb-3')
+      div(class='col-8 text-start')
+        h3 #{title}
+      div(class='col-4 search-container')
+        form(method='get')
+          div(class="input-group mb-3")
+            a(href='/admin/users/add' class='add-link')
+              i(class="bi bi-plus-circle-fill p-3")
+            a(href='/admin/users/?sorte=1' class='arrow-link')
+              i(class="bi bi-arrow-up-circle-fill p-3")
+            a(href='/admin/users/?sorte=-1' class='arrow-link')             
+              i(class="bi bi-arrow-down-circle-fill p-3")
+            input(type="text" class="form-control" name='search' placeholder="wpisz szukaną frazę..." aria-label="Recipient's username" aria-describedby="button-addon2")
+            button(class="btn btn-outline-secondary" type="submit" id="button-addon2") szukaj
     table(class="table table-striped")
       thead 
       tbody 
@@ -21,11 +34,11 @@ block content
             td=item.firstName 
             td=item.familyName 
             td=item.userEmail 
-            td #{item.created.getFullYear()}:#{item.created.getMonth() + 1}:#{item.created.getDate()}
+            td #{item.created.toString().substr(0, 15)}
             td 
               a(href=`/admin/users/show/${item._id}` class='show-icon-link') 
                 i(class="bi bi-play-fill m-2")
-              a(href=`/admin/news/edit/${item._id}` class='edit-icon-link') 
+              a(href=`/admin/users/edit/${item._id}` class='edit-icon-link') 
                 i(class="bi bi-pencil-fill m-2")
-              a(href=`/admin/news/delete/${item._id}` class='delete-icon-link') 
+              a(href=`/admin/users/delete/${item._id}` class='delete-icon-link') 
                 i(class="bi bi-x-circle-fill m-2")

@@ -2,4 +2,38 @@ extends ../../layout
 
 block content
   div(class='content-container')
-    h1 #{title}
+    h3 #{title}
+    div(class='row show-details-container py-3')
+      div(class='col-4')
+        div(class="mb-3")
+          p(class='show-label-text') Imię: 
+            span(class='show-detail-text') #{data.firstName}
+          p(class='show-label-text') Nazwisko: 
+            span(class='show-detail-text') #{data.familyName}
+          p(class='show-label-text') Email: 
+            span(class='show-detail-text') #{data.userEmail}
+          p(class='show-label-text') Data urodzenia: 
+            span(class='show-detail-text') #{data.bornDate.toString().substr(0, 15)}
+          p(class='show-label-text') Data utworzenia: 
+            span(class='show-detail-text') #{data.created.toString().substr(0, 15)}
+          p(class='show-label-text') Data aktualizacji: 
+            span(class='show-detail-text') #{data.lastEdit.toString().substr(0, 15)}
+      div(class='col-4')
+        div(class="mb-3")
+          p(class='show-label-text') Nazwa firmy: 
+            span(class='show-detail-text') #{data.userCompany}
+        div(class="mb-3")
+          p(class='show-label-text') NIP: 
+            span(class='show-detail-text') #{data.userNip}
+          p(class='show-label-text') REGON: 
+            span(class='show-detail-text') #{data.userRegon}
+          p(class='show-label-text') Adres: 
+            span(class='show-detail-text') #{data.userAdress}
+          p(class='show-label-text') Kod pocztowy: 
+            span(class='show-detail-text') #{data.userPostal}
+          p(class='show-label-text') Miasto: 
+            span(class='show-detail-text') #{data.userCity}
+      div(class='col-4')
+          img(src=`/images/avatars/${data.userAvatar}` class="rounded mx-auto d-block" alt="")
+    
+

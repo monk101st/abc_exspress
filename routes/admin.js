@@ -1,4 +1,7 @@
 const express = require('express');
+const path = require('path');
+const multer = require('multer');
+const fs = require('fs');
 const News = require('../models/news');
 const { findById } = require('../models/users');
 const Users = require('../models/users');
@@ -18,6 +21,21 @@ router.all('*', (req, res, next) => {
   next();
 });
 
+/* ------ Storage do Media */
+var avatarsStorage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, "./public/images/avatars");
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
+  },
+});
+ 
+var uploadAvatar = multer({
+  storage: avatarsStorage,
+}).single("image"); //Field name and max count
+
+/* --------------------- End Storage----------------- */
 /*######### ADMIN-index ############# */
 router.get('/', (req, res, next) => {
   res.render('admin/index', { title: 'Admin' });
@@ -139,15 +157,202 @@ router.post('/news/add', (req, res, next) => {
       })
     });
 
+    router.get('/users/add', (req, res, next) => {
+      res.render('admin/users/users-add', { title: 'Dodawanie użytkownika', body:{}, errors:{} });
+    });
+
+    router.post('/users/add', (req, res) => {
+      
+      uploadAvatar(req, res, function (err) {
+        const body = req.body;
+        const file = req.file
+    
+        if (err) {
+          console.log(err);
+          return res.end("Something went wrong");
+        } else {
+    
+          if (file !== undefined) {
+            const usersData = new Users({
+              loginName: body.loginName, 
+              userPassword: body.userPassword,
+              firstName: body.firstName,
+              familyName: body.familyName,
+              userEmail: body.userEmail,
+              bornDate: body.bornDate,
+              ruleActepted: body.ruleActepted,
+              created: body.created,
+              userAvatar: file.filename,
+              userRole: body.userRole,
+              userCompany: body.userCompany,
+              userNip: body.userNip,
+              userRegon: body.userRegon,
+              userAdress: body.userAdress,
+              userCity: body.userCity,
+              userPostal: body.userPostal, 
+            });
+            const errors = usersData.validateSync();
+          
+            usersData.save((err) => {
+                if(err) {
+                  res.render('admin/users-add', {
+                    title: 'Dosdawanie użytkownika',
+                    errors,
+                    body
+                  });
+                  return;
+                }
+                res.redirect('/admin/users')
+            });
+          } else {
+            const usersData = new Users(body);
+            const errors = usersData.validateSync();
+          
+          
+            usersData.save((err) => {
+                if(err) {
+                  res.render('admin/users-add', {
+                    title: 'Dosdawanie użytkownika',
+                    errors,
+                    body
+                  });
+                  return;
+                }
+                res.redirect('/admin/users')
+            });
+          }
+          }
+        })
+    });
+
     router.get('/users/show/:id', (req, res, next) => {
       const id = req.params.id
 
-      Users.findById({id}, (err, data) => {
+      console.log(id);
+
+      Users.findById(id, (err, data) => {
         console.log(data);
-        res.render('admin/users/users-show', { title: 'Użytkownik',id, data});
+        res.render('admin/users/users-show', { title: 'Użytkownik', data});
       });
       
 
     }); 
+
+    router.get('/users/edit/:id', (req, res, next) => {
+      const id = req.params.id
+
+      console.log(id);
+
+      Users.findById(id, (err, data) => {
+        console.log(data);
+        res.render('admin/users/users-edit', { title: 'Edycja użytkownika', data});
+      });
+      
+
+    }); 
+
+
+    router.post('/users/update', (req, res) => {
+      uploadAvatar(req, res, function (err) {
+        const body = req.body;
+        const file = req.file;
+        
+        console.log(file);
+        console.log(body);
+        if (err) {
+          console.log(err);
+          return res.end("Coś poszło nie tak");
+        } else {
+          
+          if (file !== undefined) {
+    
+    
+              if(req.body.oldpicture !== undefined && req.body.oldpicture !== 'nopicture') {
+                const path = `/images/avatars/${body.oldpicture}`;
+                console.log(path);
+                fs.unlinkSync("public"+path);
+                Users.findByIdAndUpdate(body.id, {
+                  loginName: body.loginName, 
+                  userPassword: body.userPassword,
+                  firstName: body.firstName,
+                  familyName: body.familyName,
+                  userEmail: body.userEmail,
+                  bornDate: body.bornDate,
+                  created: body.created,
+                  userAvatar: file.filename,
+                  userRole: body.userRole,
+                  userCompany: body.userCompany,
+                  userNip: body.userNip,
+                  userRegon: body.userRegon,
+                  userAdress: body.userAdress,
+                  userCity: body.userCity,
+                  userPostal: body.userPostal, 
+                }, (err) => {
+                  res.redirect('/admin/users')
+                })
+              }else if(req.body.oldpicture === 'nopicture'){
+                Users.findByIdAndUpdate(body.id, {
+                  loginName: body.loginName, 
+                  userPassword: body.userPassword,
+                  firstName: body.firstName,
+                  familyName: body.familyName,
+                  userEmail: body.userEmail,
+                  bornDate: body.bornDate,
+                  created: body.created,
+                  userAvatar: file.filename,
+                  userRole: body.userRole,
+                  userCompany: body.userCompany,
+                  userNip: body.userNip,
+                  userRegon: body.userRegon,
+                  userAdress: body.userAdress,
+                  userCity: body.userCity,
+                  userPostal: body.userPostal, 
+                }, (err) => {
+                  res.redirect('/admin/users')
+                })
+              }else {
+                Users.findByIdAndUpdate(body.id, {
+                  loginName: body.loginName, 
+                  userPassword: body.userPassword,
+                  firstName: body.firstName,
+                  familyName: body.familyName,
+                  userEmail: body.userEmail,
+                  bornDate: body.bornDate,
+                  created: body.created,
+                  userRole: body.userRole,
+                  userCompany: body.userCompany,
+                  userNip: body.userNip,
+                  userRegon: body.userRegon,
+                  userAdress: body.userAdress,
+                  userCity: body.userCity,
+                  userPostal: body.userPostal, 
+                }, (err) => {
+                  res.redirect('/admin/users')
+                })
+              }
+          }else {
+            Users.findByIdAndUpdate(body.id, {
+              loginName: body.loginName, 
+              userPassword: body.userPassword,
+              firstName: body.firstName,
+              familyName: body.familyName,
+              userEmail: body.userEmail,
+              bornDate: body.bornDate,
+              created: body.created,
+              userRole: body.userRole,
+              userCompany: body.userCompany,
+              userNip: body.userNip,
+              userRegon: body.userRegon,
+              userAdress: body.userAdress,
+              userCity: body.userCity,
+              userPostal: body.userPostal, 
+            }, (err) => {
+              res.redirect('/admin/users')
+            })
+          }
+    }
+    });
+    
+    });
 
 module.exports = router;

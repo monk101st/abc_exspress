@@ -143,6 +143,15 @@ a.active {
   color: rgb(106, 174, 225);
 }
 
+.add-link {
+  font-size: 1.4em;
+  text-decoration: none;
+  color: rgb(9, 133, 54);
+}
+.add-link:hover {
+  color: red;
+}
+
 .card-container {
   position: relative;
   width: 300px;
