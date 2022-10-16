@@ -1,0 +1,15 @@
+extends ../../layout
+
+block content
+  div(class='content-container')
+    h3 #{title}
+    div(class='row show-details-container py-3')
+      div(class='col-4')
+        div(class="mb-3")
+          p(class='show-label-text') Nazwa: 
+            span(class='show-detail-text') #{data.roleName}
+          p(class='show-label-text') Opis: 
+            span(class='show-detail-text') #{data.description}
+
+
+    

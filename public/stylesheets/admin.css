@@ -89,3 +89,7 @@ img.rounded.mx-auto.d-block {
     width: 170px;
     height: 170px;
 }
+
+.data-roles-tables {
+    overflow-y: auto;
+}

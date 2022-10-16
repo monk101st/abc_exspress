@@ -1,0 +1,12 @@
+extends ../../layout
+
+block content
+  div(class='content-container')
+    h3 #{title}
+    form(method='post')
+        div(class="mb-3")
+          label(for="exampleFormControlInput1" class="form-label") Nazwa:
+          input(type="text" class="form-control" name='roleName' placeholder="wpisz nazwę roli")
+          label(for="exampleFormControlInput1" class="form-label") Autor:
+          input(type="text" class="form-control" name='description' placeholder="Opis roli")
+        button(class='btn btn-primary') Dodaj

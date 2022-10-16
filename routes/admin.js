@@ -5,6 +5,7 @@ const fs = require('fs');
 const News = require('../models/news');
 const { findById } = require('../models/users');
 const Users = require('../models/users');
+const Roles = require('../models/roles');
 
 const router = express.Router();
 
@@ -141,14 +142,79 @@ router.post('/news/add', (req, res, next) => {
       res.render('admin/promotion/index', { title: 'Promocje - Panel' });
     });
 
-    /* ############ ADMIN - SETTINGS ############ */
-    router.get('/settings', (req, res, next) => {
+    /* ############ ADMIN - MEDIA ############ */
+    router.get('/media', (req, res, next) => {
 
   
-      res.render('admin/settings/index', { title: 'Ustawienia - Panel' });
+      res.render('admin/media/index', { title: 'Media - Panel' });
     });
 
     /* ############ ADMIN - SETTINGS ############ */
+    router.get('/settings', (req, res, next) => {
+
+      Roles.find({}, (err, data) => {
+        console.log(data)
+        res.render('admin/settings/index', { title: 'Ustawienia - Panel', data });
+      })
+
+    });
+
+    router.get('/settings/roles/add', (req, res, next) => {
+
+  
+      res.render('admin/settings/roles-add', { title: 'Dodawania roli - Panel', errors: {}, body: {} });
+    });
+
+    router.post('/settings/roles/add', (req, res, next) => {
+      const body = req.body;
+      
+      const rolesData = new Roles(body);
+      const errors = rolesData.validateSync();
+    
+      rolesData.save((err) => {
+          if(err) {
+            res.render('admin/settings/roles-add', {
+              title: 'Dosdawanie roli',
+              errors,
+              body
+            });
+            return;
+          }
+          res.redirect('/admin/settings')
+      });
+      
+    });
+    router.get('/settings/roles/show/:id', (req, res, next) => {
+      const id = req.params.id
+      Roles.findById(id, (errors, data) => {
+        res.render('admin/settings/roles-show', { title: 'Wyświetlanie roli', errors, data });
+      })
+    });
+
+    router.get('/settings/roles/edit/:id', (req, res, next) => {
+      const id = req.params.id
+      Roles.findById(id, (errors, data) => {
+        res.render('admin/settings/roles-edit', { title: 'Edycja roli', errors, data });
+      })
+    });
+
+    router.post('/settings/roles/update', (req, res, next) => {
+      const body = req.body
+      Roles.findByIdAndUpdate(body.id, {
+        roleName: body.roleName,
+        description: body.description,
+      }, (err) => {
+        res.redirect('/admin/settings')
+      })
+    });
+    router.get('/settings/roles/delete/:id', (req, res, next) => {
+      const id = req.params.id
+      Roles.findByIdAndDelete(id, (err) => {
+        res.redirect('/admin/settings')
+      })
+    });
+
+    /* ############ ADMIN - USERS ############ */
     router.get('/users', (req, res, next) => {
 
       Users.find({}, (err, data) => {

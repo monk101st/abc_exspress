@@ -1,0 +1,19 @@
+extends ../../layout
+
+block content
+  div(class='content-container')
+    h3 #{title}
+    div(class='row show-details-container py-3')
+      div(class='col-4')
+        form(method='post' action='/admin/settings/roles/update')
+            div(class="mb-3")
+                label(class="form-label") Id:
+                input(type="text" name='id' class="form-control" value= data.id || '' readonly)
+            div(class="mb-3")
+                label(class="form-label") Nazwa roli:
+                input(type="text" name='roleName' class="form-control" value= data.roleName || '' )
+            div(class="mb-3")
+                label(class="form-label") Opis roli:
+                input(type="text" name='description' class="form-control" value= data.description || '')
+            div(class="mb-3")
+                button(type='submit' class='btn btn-primary') Zapisz
